@@ -35,8 +35,7 @@ class Country {
             name_ = tmp;
         }
         void addCity(City* city) {
-            City* tmp = new City(city->getCityName(), city->getCityPopulation());
-            cities_.push_back(tmp);
+            cities_.push_back(city);
         }
         int getCountryPopulation() {
             int result = 0;
@@ -60,12 +59,12 @@ class Country {
 };
 
 int main() {
-    City exampleCity1("Kaliningrad", 500000);
-    City exampleCity2("Moscow", 10000000);
+    City* exampleCity1 = new City("Kaliningrad", 500000);
+    City* exampleCity2 = new City("Moscow", 10000000);
     Country exampleCountry("Russia");
-    exampleCountry.addCity(&exampleCity1);
-    exampleCountry.addCity(&exampleCity2);
+    exampleCountry.addCity(exampleCity1);
+    exampleCountry.addCity(exampleCity2);
     exampleCountry.outCities();
+    std::cout << "Country name: " << exampleCountry.getCountryName() << " Country population: " << exampleCountry.getCountryPopulation() << "\n";
 }
-
 
