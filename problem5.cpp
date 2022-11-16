@@ -58,6 +58,9 @@ class SmartMas {
         int operator[] (int index) {
             return mas_[index];
         }
+        ~SmartMas() {
+            delete[] mas_;
+        }
 };
 
 int main() {
