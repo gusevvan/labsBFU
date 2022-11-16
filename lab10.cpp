@@ -44,6 +44,9 @@ class Country {
                 std::cout << "Name: " << city->getCityName() << " Population: " << city->getCityPopulation() << "\n";
             }
         }
+        ~Country() {
+            cities_.clear();
+        }
 };
 
 int main() {
