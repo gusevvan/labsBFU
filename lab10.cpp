@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cstring>
 
 class City {
     private:
@@ -7,7 +8,9 @@ class City {
         unsigned population_;
     public:
         City(char* name, unsigned population) {
-            name_ = name;
+            char* tmp = new char[strlen(name)];
+            strcpy(tmp, name);
+            name_ = tmp;
             population_ = population;
         }
         unsigned getCityPopulation() {
@@ -15,6 +18,9 @@ class City {
         }
         char* getCityName() {
             return name_;
+        }
+        ~City() {
+            delete[] name_;
         }
 };
 
@@ -24,10 +30,13 @@ class Country {
         char* name_;
     public:
         Country(char* name) {
-            name = name_;
+            char* tmp = new char[strlen(name)];
+            strcpy(tmp, name);
+            name_ = tmp;
         }
         void addCity(City* city) {
-            cities_.push_back(city);
+            City* tmp = new City(city->getCityName(), city->getCityPopulation());
+            cities_.push_back(tmp);
         }
         int getCountryPopulation() {
             int result = 0;
@@ -45,6 +54,7 @@ class Country {
             }
         }
         ~Country() {
+            delete[] name_;
             cities_.clear();
         }
 };
