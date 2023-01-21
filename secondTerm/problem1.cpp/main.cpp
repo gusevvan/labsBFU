@@ -2,8 +2,8 @@
 
 template <typename T>
 void arrCopy(T* src, T* dst, int size) {
-    unsigned long long *cursrc = (unsigned long long*)src,
-                                *curdst = (unsigned long long*)dst;
+    long long *cursrc = (long long*)src,
+                                *curdst = (long long*)dst;
     int n = (sizeof(T) * size) / sizeof(long long);
     for (int i = 0; i < n; ++i) {
         *(curdst + i) = *(cursrc + i);
