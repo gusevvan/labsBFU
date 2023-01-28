@@ -48,15 +48,15 @@ public:
         return result;
     }
 
-    String operator+=(const String &other) {
+    String operator+=(const String &other) const {
         return *this + other;
     }
 
-    char &operator[](int i) {
+    char &operator[](int i) const {
         return this->_str[i];
     }
 
-    bool operator<(const String &other) {
+    bool operator<(const String &other) const {
         for (int i = 0; i < std::min(this->_size, other._size); ++i) {
             if (this->_str[i] < other._str[i]) {
                 return true;
@@ -72,7 +72,7 @@ public:
         }
     }
 
-    bool operator>(const String &other) {
+    bool operator>(const String &other) const {
         for (int i = 0; i < std::min(this->_size, other._size); ++i) {
             if (this->_str[i] > other._str[i]) {
                 return true;
@@ -88,7 +88,7 @@ public:
         }
     }
 
-    bool operator==(const String &other) {
+    bool operator==(const String &other) const {
         if (this->_str != other._str) {
             return false;
         }
@@ -113,7 +113,7 @@ public:
         return in;
     }
 
-    int find(char symbol) {
+    int find(char symbol) const {
         int result = -1;
         for (int i = 0; i < _size; ++i) {
             if (_str[i] == symbol) {
@@ -124,15 +124,15 @@ public:
         return result;
     }
 
-    int length() {
+    int length() const {
         return _size;
     }
 
-    const char *c_str() {
+    const char *c_str() const {
         return _str;
     }
 
-    char at(int i) {
+    char at(int i) const {
         if (i >= _size) {
             throw 3;
         } else {
