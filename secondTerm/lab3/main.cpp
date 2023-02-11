@@ -60,7 +60,8 @@ Complex operator+(const Complex& number1, const Complex& number2) {
 
 Complex operator*(const Complex& number1, const Complex& number2) {
 	Complex result = number1;
-	return result *= number2;
+    result *= number2;
+	return result;
 }
 
 int main()
@@ -68,14 +69,16 @@ int main()
 	Complex sample1(10, 4);
 	Complex sample2;
 	std::cin >> sample2;
-	std::cout << sample1 + sample2 << "\n";
-	std::cout << sample1 * sample2 << "\n";
-	std::cout << sample1 << "\n";
+    std::cout << "Z1=" << sample1 << " " << "Z2=" << sample2 << "\n";
+	std::cout << "Z1+Z2=" << sample1 + sample2 << "\n";
+	std::cout << "Z1*Z2=" << sample1 * sample2 << "\n";
+	std::cout << "Z1=" << sample1 << " Z2=" << sample2 << "\n";
 	Complex sample3(1, 1);
+    std::cout << "Z3=" << sample3 << "\n";
 	sample1 += sample3;
-	std::cout << sample1 << "\n";
+	std::cout << "Z1=" << sample1 << "\n";
 	sample1 *= sample3;
-	std::cout << sample1 << "\n";
+	std::cout << "Z1=" << sample1 << "\n";
 	std::cout << (sample2++) << "\n";
 	std::cout << sample2 << "\n";
 	std::cout << (++sample2) << "\n";
