@@ -39,34 +39,34 @@ public:
 		return result;
 	}
 
+    T& at(int i, int j) {
+        return this->_content[i][j];
+    }
+
+
 	template<typename TT, int NN, int MM>
-	Matrix& operator*=(const Matrix<TT, NN, MM>& other) {
+	friend Matrix<T, N, MM> operator*(const Matrix<T, N, M>& matrix1, Matrix<TT, NN, MM>& matrix2) {
 		if (M == NN) {
 			Matrix<T, N, MM> result;
-			for (int i = 0; i < N; ++i) {
-				for (int j = 0; j < MM; ++j) {
-					result._content[i][j] = 0;
-					for (int k = 0; k < NN; ++k) {
-						result._content[i][j] += this->_content[i][k] * result._content[k][j];
-					}
-				}
-			}
-			return result;
+            for (int i = 0; i < N; ++i) {
+                for (int j = 0; j < MM; ++j) {
+                    result.at(i, j) = 0;
+                    for (int k = 0; k < M; ++k) {
+                        result.at(i, j) += matrix1._content[i][k] * matrix2.at(k, j);
+                    }
+                }
+            }
+            return result;
 		} else {
 			std::cout << "Error size of multiplied matrix\n";
 		}
 	}
 
-	template<typename TT, int NN, int MM>
-	friend Matrix operator*(const Matrix<T, N, M>& matrix1, const Matrix<T, NN, MM> matrix2) {
-		if (M == NN) {
-			Matrix result = matrix1;
-			matrix1 *= matrix2;
-			return result;
-		} else {
-			std::cout << "Error size of multiplied matrix\n";
-		}
-	}
+    Matrix<T, N, M>& operator*=(const Matrix<T, M, M>& other) {
+        Matrix<T, N, M> tmp = *this;
+        *this = tmp * other;
+        return *this;
+    }
 
 	Matrix& operator++() {
 		for (int i = 0; i < N; ++i) {
@@ -94,6 +94,7 @@ public:
 			}
 			std::cout << "\n";
 		}
+        return out;
 	}
 
 	friend std::istream& operator>>(std::istream& in, Matrix<T, N, M>& matrix) {
@@ -102,11 +103,10 @@ public:
 				std::cin >> matrix._content[i][j];
 			}
 		}
+        return in;
 	}
 
-	T& at(int i, int j) {
-		return this->_content[i][j];
-	}
+
 
 	T determinant() {
 		if (N == M) {
@@ -164,7 +164,10 @@ int main()
 {
 	Matrix<int, 3, 3> sample1;
 	std::cin >> sample1;
-	sample1.at(0, 0) = 10;
-	std::cout << sample1.determinant();
+    Matrix<int, 3, 2> sample2;
+    std::cin >> sample2;
+    Matrix<int, 3, 2> sample3;
+    sample3 = sample1 * sample2;
+    std::cout << sample3;
 	return 0;
 }
