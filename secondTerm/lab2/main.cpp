@@ -48,11 +48,12 @@ public:
         return result;
     }
 
-    String operator+=(const String &other) const {
-        return *this + other;
+    String& operator+=(const String &other) {
+        *this = *this + other;
+        return *this;
     }
 
-    char &operator[](int i) const {
+    char &operator[](int i) {
         return this->_str[i];
     }
 
@@ -153,6 +154,8 @@ int main() {
         String test1, test2 = "ghdl";
         std::cin >> test1;
         String res = test1 + test2;
+        test2 += "abcd";
+        std::cout << test2 << "\n";
         std::cout << res << "\n";
         std::cout << res[0] << "\n";
         res[0] = 'k';

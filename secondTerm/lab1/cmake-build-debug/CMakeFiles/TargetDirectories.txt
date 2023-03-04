@@ -1,0 +1,3 @@
+/home/ivan/Documents/BFU/labsBFU/secondTerm/lab1/cmake-build-debug/CMakeFiles/lab1.dir
+/home/ivan/Documents/BFU/labsBFU/secondTerm/lab1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ivan/Documents/BFU/labsBFU/secondTerm/lab1/cmake-build-debug/CMakeFiles/rebuild_cache.dir

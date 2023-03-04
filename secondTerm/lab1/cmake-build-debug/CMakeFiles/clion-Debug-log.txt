@@ -1,0 +1,9 @@
+/snap/clion/218/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/218/bin/ninja/linux/ninja -G Ninja -S /home/ivan/Documents/BFU/labsBFU/secondTerm/lab1 -B /home/ivan/Documents/BFU/labsBFU/secondTerm/lab1/cmake-build-debug
+CMake Error at CMakeLists.txt:12 (file):
+  file COPY cannot find
+  "/home/ivan/Documents/BFU/labsBFU/secondTerm/lab1/assets/bold.ttf": No such
+  file or directory.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/ivan/Documents/BFU/labsBFU/secondTerm/lab1/cmake-build-debug/CMakeFiles/CMakeOutput.log".
