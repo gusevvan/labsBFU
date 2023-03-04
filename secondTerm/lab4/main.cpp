@@ -113,15 +113,12 @@ public:
             if (N == 1) {
                 return this->_content[0][0];
             }
-            if (N == 2) {
-                return this->_content[0][0] * this->_content[1][1] - this->_content[0][1] * this->_content[1][0];
-            }
-            if (N == 3) {
+            if constexpr (N > 1) {
                 T result = 0;
-                Matrix<T, 2, 2> minor;
-                for (int i = 0; i < 3; ++i) {
-                    for (int j = 1; j < 3; ++j) {
-                        for (int k = 0; k < 3; ++k) {
+                Matrix<T, N - 1, M - 1> minor;
+                for (int i = 0; i < N; ++i) {
+                    for (int j = 1; j < N; ++j) {
+                        for (int k = 0; k < M; ++k) {
                             if (k < i) {
                                 minor.at(j - 1, k) = this->_content[j][k];
                             }
@@ -130,25 +127,10 @@ public:
                             }
                         }
                     }
-                    result += minor.determinant() * this->_content[0][i];
+                    result += this->_content[0][i] * minor.determinant();
+                    return result;
                 }
-                return result;
             }
-            /*Matrix<T, N - 1, M - 1> minor;
-            for (int i = 0; i < N; ++i) {
-                for (int j = 1; j < N; ++j) {
-                    for (int k = 0; k < M; ++k) {
-                        if (k < i) {
-                            minor.at(j - 1, k) = this->_content[j][k];
-                        }
-                        if (k > i) {
-                            minor.at(j - 1, k - 1) = this->_content[j][k];
-                        }
-                    }
-                }
-                result += this->_content[0][i] * minor.determinant();
-                return result;
-            }*/
         } else {
             std::cout << "Matrix is not square\n";
         }
@@ -162,11 +144,11 @@ int main()
 {
     Matrix<int, 3, 3> sample1;
     std::cin >> sample1;
-    Matrix<int, 3, 2> sample2;
-    std::cin >> sample2;
-    Matrix<int, 3, 2> sample3;
-    sample3 = (sample1 + sample1) * sample2;
-    std::cout << sample3;
+    //Matrix<int, 3, 2> sample2;
+    //std::cin >> sample2;
+    //Matrix<int, 3, 2> sample3;
+    //sample3 = (sample1 + sample1) * sample2;
+    //std::cout << sample3;
     std::cout << sample1.determinant();
     return 0;
 }

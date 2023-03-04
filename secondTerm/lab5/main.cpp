@@ -102,6 +102,9 @@ public:
         }
         std::cout << "\n";
     }
+    ~vector<bool>() {
+        delete[] _content;
+    }
 };
 
 int main() {
