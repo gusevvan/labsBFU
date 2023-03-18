@@ -3,4 +3,4 @@ project(lab6)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(lab6 main.cpp)
+add_executable(lab6 main.cpp Logger.hpp)
