@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <cmath>
 
 #define PI acos(-1)
@@ -9,6 +10,10 @@ class Shape {
 protected:
 	double _px, _py;
 	Color _sColor;
+public:
+	virtual double area() {
+		return 0;
+	}
 };
 
 class Triangle : public Shape {
@@ -24,7 +29,7 @@ public:
 		_sColor = color;
 	}
 
-	double area() {
+	double area() override {
 		double semiPerimeter = (_aScale + _bScale + _cScale) / 2;
 		return std::sqrt(semiPerimeter * (semiPerimeter - _aScale) *
 									(semiPerimeter - _bScale) * (semiPerimeter - _cScale));
@@ -42,7 +47,7 @@ public:
 		_sColor = color;
 	}
 
-	double area() {
+	double area() override {
 		return PI * _radius * _radius;
 	}
 };
@@ -59,18 +64,22 @@ public:
 		_sColor = color;
 	}
 
-	double area() {
+	double area() override {
 		return _aScale * _bScale;
 	}
 };
 
 int main()
 {
-	Circle circle(1, 1, 1, Blue);
-	std::cout << circle.area() << "\n";
-	Rectangle rectangle(1, 1, 1, 1, Grey);
-	std::cout << rectangle.area() << "\n";
-	Triangle triangle(1, 1, 1, 1, 1, White);
-	std::cout << triangle.area() << "\n";
+	Shape* circle = new Circle(1, 1, 1, Blue);
+	Shape* rectangle = new Rectangle(1, 1, 1, 1, Grey);
+	Shape* triangle = new Triangle(1, 1, 1, 1, 1, White);
+	std::vector<Shape*> shapes;
+	shapes.push_back(circle);
+	shapes.push_back(rectangle);
+	shapes.push_back(triangle);
+	for (Shape* shape:shapes) {
+		std::cout << shape->area() << " ";
+	}
 	return 0;
 }
