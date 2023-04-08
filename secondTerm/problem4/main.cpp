@@ -7,11 +7,15 @@
 
 int main()
 {
-	std::ifstream in("input.txt");
+    std::ifstream in("input.txt");
+    if (!in.is_open()) {
+        std::cout << "Error to open input file.\n";
+        return 0;
+    }
 	std::vector<smart::Device*> devices;
 	std::string deviceName;
-	while (in >> deviceName) {
-		std::cout << deviceName;
+    in >> deviceName;
+	while (in) {
 		if (deviceName == "Mercury") {
 			smart::Device* current = new smart::Mercury(devices.size(), smart::OFF, "");
 			devices.push_back(current);
@@ -44,8 +48,12 @@ int main()
 			smart::Device* current = new smart::Oven(devices.size(), smart::OFF, "");
 			devices.push_back(current);
 		}
+        in >> deviceName;
 	}
 	for (auto device:devices) {
 		device->poll();
 	}
+    for (int i = 0; i < devices.size(); ++i) {
+        delete devices[i];
+    }
 }

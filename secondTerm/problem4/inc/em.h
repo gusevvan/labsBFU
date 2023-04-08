@@ -19,6 +19,7 @@ namespace smart {
 	class Mercury : public EM {
 	public:
 		Mercury(int key, Mode mode, std::string info) {
+            _type = "Electricity Meter";
 			_key = key;
 			_mode = mode;
 			_addInfo = info;
@@ -33,6 +34,7 @@ namespace smart {
 	class Neva : public EM {
 	public:
 		Neva(int key, Mode mode, std::string info) {
+            _type = "Electricity Meter";
 			_key = key;
 			_mode = mode;
 			_addInfo = info;
@@ -47,6 +49,7 @@ namespace smart {
 	class EnergoMera : public EM {
 	public:
 		EnergoMera(int key, Mode mode, std::string info) {
+            _type = "Electricity Meter";
 			_key = key;
 			_mode = mode;
 			_addInfo = info;

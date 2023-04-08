@@ -18,6 +18,7 @@ namespace smart {
 	class RealLab : public DSIB {
 	public:
 		RealLab(int key, Mode mode, std::string info) {
+            _type = "Discrete signal input block";
 			_key = key;
 			_mode = mode;
 			_addInfo = info;
@@ -32,6 +33,7 @@ namespace smart {
 	class PriborElectro : public DSIB {
 	public:
 		PriborElectro(int key, Mode mode, std::string info) {
+            _type = "Discrete signal input block";
 			_key = key;
 			_mode = mode;
 			_addInfo = info;
@@ -46,12 +48,13 @@ namespace smart {
 	class EnergoService : public DSIB {
 	public:
 		EnergoService(int key, Mode mode, std::string info) {
+            _type = "Discrete signal input block";
 			_key = key;
 			_mode = mode;
 			_addInfo = info;
 		}
 		void poll() override {
-			std::cout << "Discrete signal input block EnergoService ENMV-1-24 ";
+			std::cout << _type << " EnergoService ENMV-1-24 ";
 			out();
 			showCurSignal();
 		}

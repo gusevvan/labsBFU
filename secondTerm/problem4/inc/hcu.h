@@ -18,6 +18,7 @@ namespace smart {
 	class Ouman : public HCU {
 	public:
 		Ouman(int key, Mode mode, std::string info) {
+            _type = "Heating control unit";
 			_key = key;
 			_mode = mode;
 			_addInfo = info;
@@ -32,6 +33,7 @@ namespace smart {
 	class Oven : public HCU {
 	public:
 		Oven(int key, Mode mode, std::string info) {
+            _type = "Heating control unit";
 			_key = key;
 			_mode = mode;
 			_addInfo = info;
