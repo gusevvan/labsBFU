@@ -1,5 +1,6 @@
 #include <iostream>
-#include <stack>
+#include <limits>
+#include <climits>
 
 template <typename T>
 struct element {
@@ -18,6 +19,9 @@ public:
 	}
 
 	void push(T value) {
+        if (_size == INT_MAX) {
+            throw std::overflow_error("Stack is too large");
+        }
 		++_size;
 		element<T>* current = new element<T>;
 		if (current == NULL) {
